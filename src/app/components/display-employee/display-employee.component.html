@@ -1,0 +1,61 @@
+<!-- <div class="row">
+    <div class="col-6">
+        <h3>Employee list</h3>
+    <table class="table table-bordered table-striped-columns">
+    <thead>
+        <tr>
+            <th>SL NO</th>
+            <th>Employee Name</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+    <tr *ngFor="let emp of employees; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{emp.Name}}</td>
+        <td><img [src]='imageBaseUrl+emp.ImageUrl' [title]="emp.ImageName" style="height: 80px; width: 70px;"></td>
+        <td></td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center">Employee list</h3>       
+          <table class="table table-bordered table-striped-columns">
+            <thead>
+              <tr>
+                <th>SL NO</th>
+                <th>Employee Name</th>
+                <th>Employee Activity</th>
+                <th>Join Date</th>
+                <th>Image</th>
+                <th>Experiences</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let emp of employees; let i=index">
+                <td>{{i+1}}</td>
+                <td>{{emp.Name}}</td>
+                <td>{{emp.IsActive}}</td>
+                <td>{{emp.JoinDate | date: 'shortDate'}}</td>
+                <td><img [src]='imageBaseUrl+emp.ImageUrl' [title]="emp.ImageName" style="height: 80px; width: 70px;"></td>
+                <td>
+                  <ul>
+                    <li *ngFor="let exp of emp.Experiences">
+                      {{ exp.Title}} - {{ exp.Duration }}
+                    </li>
+                  </ul>
+                </td>
+                <td><button class="btn btn-info btn-sm">Update</button>|<button class="btn btn-danger btn-sm">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      

@@ -1,0 +1,67 @@
+<br>
+<div class="row">   
+<div class="col-4"></div>
+<div class="col-4">  
+    <h3>User Signup</h3><br>
+    <form [formGroup]="frm" (ngSubmit)="onPost()">
+      <br>
+      <div class="form-outline mb-4">
+        <input type="text" name="name" class="input" placeholder="Name" class="form-control" formControlName="name">          
+      </div>
+      <div class="error" *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)">
+        <span *ngIf="f['name'].errors?.['required']">
+            Name is required  
+      </span>
+      </div>  
+      <div class="form-outline mb-4">
+        <input name="userName" formControlName="username"  class="form-control" placeholder="User Name"/>        
+      </div>
+      <div class="error" *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+        <span *ngIf="f['username'].errors?.['required']">
+            User Name is required  
+      </span>
+      </div> 
+        <div class="form-outline mb-4">
+          <input type="email" name="email" formControlName="email"  class="form-control" placeholder="Emaill Address"/>        
+        </div>      
+        <div class="error" *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+          <span *ngIf="f['email'].errors?.['required']">
+              email is required  
+        </span>
+        </div>
+        <div class="form-outline mb-4">
+          <input type="password" name="password" formControlName="password" class="form-control" placeholder="password"/>       
+        </div>
+        <div class="error" *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+          <span *ngIf="f['password'].errors?.['required']">
+              password is required  
+        </span>
+        <span *ngIf="f['password'].errors?.['invalidPattern']">
+          Atleast 6 character long,must contain 1 uppercase, 1 lowercase, 1 digit and 1 special character
+      </span>
+        </div>
+        <div class="form-outline mb-4">
+            <input type="password" name="confirmPassword" formControlName="confirmPassword" class="form-control" placeholder="confirm password"/>         
+        </div>               
+        <div class="error" *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)">
+          <span *ngIf="f['confirmPassword'].errors?.['required']">
+              password is required  
+        </span>
+        <span *ngIf="f['confirmPassword'].errors?.['mustMatch']">
+          Password and confirm password should be matched  
+      </span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="frm.invalid" >Sign Up</button>  
+        <div class="" *ngIf="status">
+          {{status.message}}
+       </div>    
+        <div class="text-center">
+          <p>  <a routerLink="/login" class="link">Already a member? Login here</a></p>         
+        </div>
+      </form>
+</div>
+<div class="col-4"></div>
+</div>
+
+
+

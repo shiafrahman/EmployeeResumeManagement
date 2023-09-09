@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-6">
+        <form [formGroup]="frm" (ngSubmit)="onPost()">
+          <h3>Add Employee</h3>
+          <div class="mb-3">
+            <label for="name">Employee Name</label>
+            <input type="text" class="form-control" formControlName="name">
+            <div *ngIf="f['name'].touched || f['name'].dirty && f['name'].invalid">
+                <div *ngIf="f['name'].errors ?. ['required'] " class="text-danger">
+                    Employee Name is required
+                </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <img [src]="url" title="image" alt="" height="80px" width="80px" class="mb-2">
+            <label>Choose Image</label>
+            <input type="file" class="form-control" accept="image/*" (change)="onSelect($event)">
+          </div>
+          <div class="mb-2 form-check">
+            <label for="isActive">Is Active</label>
+            <input type="checkbox" class="form-check-input" formControlName="isActive">
+          </div>
+          <div class="mb-3">
+            <label for="joinDate">Join Date</label>
+            <input type="date" class="form-control" formControlName="joinDate">
+            <div *ngIf="f['joinDate'].touched || f['joinDate'].dirty && f['joinDate'].invalid">
+                <div *ngIf="f['joinDate'].errors ?. ['required'] " class="text-danger">
+                    Join Date is required
+                </div>
+            </div>    
+          </div>
+          <div class="mb-2 form-check" *ngIf="status">
+            {{ status.message }}
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="frm.invalid || !imageFile">Submit</button>
+        </form>
+      </div>
+    <div class="col-6">
+        <h3> Employee Experience</h3>
+        <div class="row">
+            <div class="col-4">
+                <label>Title</label>
+                <input type="text" class="form-control" [(ngModel)]="employeeExObj.Title" placeholder="Enter Title">
+            </div>
+            <div class="col-4">
+                <label>Duration</label>
+                <input type="number" class="form-control" [(ngModel)]="employeeExObj.Duration" placeholder="Enter Title">
+            </div>
+            <div class="col-4 mt-4 text-center" >
+                <button class="btn btn-sm bg-primary" style="color: #fff;" (click)="addExperience()">Add Experience</button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let exp of empExperiences">
+                        <td>{{exp.Title}}</td>
+                        <td>{{exp.Duration}}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="deleteExperience(exp, empExperiences)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div> 
+  
